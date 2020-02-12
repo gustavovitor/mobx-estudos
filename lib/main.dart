@@ -31,27 +31,30 @@ class MyHomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text(title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'Quantidade:',
-            ),
-            Observer(
-              builder: (_) {
-                return Text(
-                  '${controller.counter}',
-                  style: Theme.of(context).textTheme.display1,
-                );
-              },
-            ),
-          ],
+      body: Padding(
+        padding: EdgeInsets.all(50),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              TextField(
+                decoration: InputDecoration(labelText: 'Nome'),
+                onChanged: controller.changeName,
+              ),
+              SizedBox(height: 20,),
+              TextField(
+                decoration: InputDecoration(labelText: 'Sobrenome'),
+                onChanged: controller.changeSobrenome,
+              ),
+              SizedBox(height: 20,),
+              Observer(builder: (_) => Text('${controller.nomeCompleto}'))
+            ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          controller.increment();
+
         },
         tooltip: 'Increment',
         child: Icon(Icons.add),
