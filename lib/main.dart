@@ -1,27 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:get_it/get_it.dart';
 import 'package:mobx_estudo/body.dart';
-import 'package:provider/provider.dart';
 
 import 'controller.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  GetIt getIt = GetIt.I;
+
+  getIt.registerSingleton<Controller>(Controller());
+
+
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        Provider<Controller>(
-          create: (_) => Controller(), dispose: (_, controller) => controller.dispose(),)
-      ],
-      child: MaterialApp(
-        title: 'MobX',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: MyHomePage(),
+    return MaterialApp(
+      title: 'MobX',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
       ),
+      home: MyHomePage(),
     );
   }
 }
@@ -31,7 +32,7 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Provider.of<Controller>(context);
+    final controller = GetIt.I.get<Controller>();
 
     return Scaffold(
         appBar: AppBar(

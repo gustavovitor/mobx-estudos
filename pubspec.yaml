@@ -27,7 +27,7 @@ dependencies:
   # MobX
   mobx: 1.0.1
   flutter_mobx: 1.0.1
-  provider:
+  get_it:
 
 dev_dependencies:
   flutter_test:
