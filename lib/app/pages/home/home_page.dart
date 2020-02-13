@@ -56,14 +56,15 @@ class _HomePageState extends State<HomePage> {
             )
           ],
           title: TextField(
+            onChanged: controller.setFilter,
             decoration: InputDecoration(hintText: 'Pesquisa'),
           )),
       body: Observer(
         builder: (_) {
           return ListView.builder(
-              itemCount: controller.listItems.length,
+              itemCount: controller.filteredList.length,
               itemBuilder: (_, index) {
-                var item = controller.listItems[index];
+                var item = controller.filteredList[index];
                 return ItemWidget(
                   item: item,
                   onRemove: () {
